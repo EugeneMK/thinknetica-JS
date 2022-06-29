@@ -1,4 +1,4 @@
-const isAccessPermitted = (user) => {
+const hasAccess = (user) => {
   if (user.age >= 18 && user.age <= 35) {
       if (user.isAdmin) return true;
       if (user.paid && !user.blocked && !user.badUsername) return true;
@@ -6,7 +6,7 @@ const isAccessPermitted = (user) => {
   return false;
 }
 
-const isAccessPermitted = (user) => {
+const hasAccess = (user) => {
   user.age >= 18 && user.age <= 35 ?
       (user.isAdmin ? true :
           (user.paid && !user.blocked && !user.badUsername ? true : false)
