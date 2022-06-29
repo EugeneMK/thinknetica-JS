@@ -1,2 +1,2 @@
-word => word.length;
+const wordLength = (word) => word.length;
 
