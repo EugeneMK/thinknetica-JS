@@ -10,6 +10,9 @@ const analizeWord = (currentWord) => {
 
 const removePunctuation = (word) => word.replace(/[^a-zа-я]/gi, "");
 
-const analizeText = (text) => text.split(' ').map(removePunctuation).map(analizeWord);
+const analizeText = (text) => text.split(' ')
+  .map(removePunctuation)
+  .filter(word => word.length > 0)
+  .map(analizeWord);
 
 export default analizeText;
