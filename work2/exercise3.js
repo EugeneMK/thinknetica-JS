@@ -6,5 +6,4 @@ const filterByLength = (array, minLength, maxLength) => array.filter(
   item => item.length >= minLength && item.length <= maxLength
 );
 
-let arr1 = ['lime', 'orange', 'apple', 'banana', ''];
-filterByLength(arr1, 0, 5);
+export default filterByLength;
