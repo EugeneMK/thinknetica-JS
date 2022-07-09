@@ -6,5 +6,3 @@ const compareArrays = (array1, array2) => {
 
   return biggerArray.map((element, index) => element === smallerArray[index]);
 };
-
-export default compareArrays;

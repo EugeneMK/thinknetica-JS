@@ -5,5 +5,3 @@
 const filterByLength = (array, minLength, maxLength) => array.filter(
   item => item.length >= minLength && item.length <= maxLength
 );
-
-export default filterByLength;

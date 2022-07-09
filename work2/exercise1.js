@@ -14,5 +14,3 @@ const analizeText = (text) => text.split(' ')
   .map(removePunctuation)
   .filter(word => word.length > 0)
   .map(analizeWord);
-
-export default analizeText;
