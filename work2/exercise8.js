@@ -18,15 +18,19 @@ const human = Object.create({}, {
     },
 
     get: function () {
-          return (`${this.firstName} ${this.lastName}`);
+      return (`${this.firstName} ${this.lastName}`);
     }
   },
-
+  
   dateOfBirth: {
-    set: function (birthDate) {
-        this.age = new Date().getYear() - new Date(birthDate).getYear();
+    writable: true
+  },
+
+  age: {
+    get: function () {
+      return new Date().getYear() - new Date(this.dateOfBirth).getYear();
     }
-},
+  }
 });
 
 human.firstName = 'Ivan';
