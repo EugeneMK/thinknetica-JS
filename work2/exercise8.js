@@ -23,16 +23,13 @@ const human = Object.create({}, {
   },
   
   dateOfBirth: {
-    writable: true
-  },
-
-  age: {
-    get: function () {
-      return new Date().getYear() - new Date(this.dateOfBirth).getYear();
+    set: function (birthDate) {
+      this._dateOfBirth = birthDate;
+      this.age = new Date().getYear() - new Date(birthDate).getYear()
     }
-  }
+  },
 });
 
-human.firstName = 'Ivan';
+human.firstName = 'Igor';
 human.lastName = 'Ivanov';
-human.dateOfBirth = '2000.02.28';
+human.dateOfBirth = '2001.02.28';
