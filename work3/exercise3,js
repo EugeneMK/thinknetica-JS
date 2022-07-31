@@ -1,0 +1,59 @@
+// Создайте калькулятор позволяющий добавлять в него дополнительные методы и сохранять результат, по умолчанию должны присутствовать методы add, substract
+
+// Пример: 
+// const calculator = new Calc()
+
+// calculator.operation('31 + 32') // 63
+// calculator.operation('10 * 2') // 10
+// calculator.addOperation('/', (a, b) => a / b)
+// calculator.operation('10 / 2') // 5
+
+// Также, он должен хранить историю всех операций и выводить ее по запросу:
+ 
+// calculator.history() /* [{operation: '+', operands: [31,32]}, {operation: '*', 
+// operands: [10,2]}, {operation: '/', operands: [10,2]}] */
+ 
+// И очищать историю
+// calculator.clearHistory()
+// calculator.history() // []
+
+const Calc = function () {
+  let historyStorage = [];
+  const operations = [
+    {
+      operator: '+',
+      action: (a, b) => a + b
+    },
+    {
+      operator: '-',
+      action: (a, b) => a - b
+    }
+  ];
+
+  this.operation = function (expression) {
+    const elements = expression.split(' ');
+    const operator = elements[1];
+    const operand1 = +elements[0];
+    const operand2 = +elements[2];
+    
+    historyStorage.push({
+      operation: operator,
+      operands: [operand1, operand2]
+    });
+
+    const operation = operations.find(operation => operation.operator == operator);
+    return operation ? operation.action(operand1, operand2) : 'No such operation added yet!';
+  };
+
+  this.addOperation = function (operator, action) {
+    operations.push({operator, action});
+  }
+
+  this.history = function () {
+    return historyStorage;
+  }
+
+  this.cleanHistory = function () {
+    historyStorage = [];
+  }
+};
