@@ -51,10 +51,7 @@ const Employee = function (
   salaryCurrency,
   department
 ) {
-  this.name = name;
-  this.lastName = lastName;
-  this.location = location;
-  this.phoneNumber = phoneNumber;
+  this.__proto__ = new Person(name, lastName, location, phoneNumber);
   this.position = position;
   this.baseSalary = baseSalary;
   this.salaryCurrency = salaryCurrency;
@@ -79,14 +76,16 @@ const CurrentEmployee = function (
   department,
   startDate
 ) {
-  this.name = name;
-  this.lastName = lastName;
-  this.location = location;
-  this.phoneNumber = phoneNumber;
-  this.position = position;
-  this.baseSalary = baseSalary;
-  this.salaryCurrency = salaryCurrency;
-  this.department = department;
+  this.__proto__ = new Employee(
+    name,
+    lastName,
+    location,
+    phoneNumber,
+    position,
+    baseSalary,
+    salaryCurrency,
+    department
+  );
   this.startDate = startDate;
 
   this.startVacation = function () {
@@ -109,18 +108,20 @@ const FormerEmployee = function (
   startDate,
   endDate
 ) {
-  this.name = name;
-  this.lastName = lastName;
-  this.location = location;
-  this.phoneNumber = phoneNumber;
-  this.position = position;
-  this.baseSalary = baseSalary;
-  this.salaryCurrency = salaryCurrency;
-  this.department = department;
+  this.__proto__ = new Employee(
+    name,
+    lastName,
+    location,
+    phoneNumber,
+    position,
+    baseSalary,
+    salaryCurrency,
+    department
+  );
   this.startDate = startDate;
   this.endDate = endDate;
 };
 
-Employee.prototype = new Person();
-CurrentEmployee.prototype = new Employee();
-FormerEmployee.prototype = new Employee();
+// Employee.prototype = new Person();
+// CurrentEmployee.prototype = new Employee();
+// FormerEmployee.prototype = new Employee();
