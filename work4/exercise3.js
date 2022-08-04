@@ -51,17 +51,20 @@ const Employee = function (
   salaryCurrency,
   department
 ) {
-  this.__proto__ = new Person(name, lastName, location, phoneNumber);
+  Object.setPrototypeOf(
+    this,
+    new Person(name, lastName, location, phoneNumber)
+  );
   this.position = position;
   this.baseSalary = baseSalary;
   this.salaryCurrency = salaryCurrency;
   this.department = department;
 
   this.writeReport = function () {
-    console.log(this.name + "is writing report");
+    console.log(this.name + " is writing report");
   };
   this.organizeMeeting = function () {
-    console.log(this.name + "is organizing meeting");
+    console.log(this.name + " is organizing meeting");
   };
 };
 
@@ -76,23 +79,25 @@ const CurrentEmployee = function (
   department,
   startDate
 ) {
-  this.__proto__ = new Employee(
-    name,
-    lastName,
-    location,
-    phoneNumber,
-    position,
-    baseSalary,
-    salaryCurrency,
-    department
+  Object.setPrototypeOf(
+    this,
+    new Employee(
+      name,
+      lastName,
+      location,
+      phoneNumber,
+      position,
+      baseSalary,
+      salaryCurrency,
+      department
+    )
   );
   this.startDate = startDate;
-
   this.startVacation = function () {
-    console.log(this.name + "is going on vacation");
+    console.log(this.name + " is going on vacation");
   };
   this.retire = function () {
-    console.log(this.name + "retired");
+    console.log(this.name + " retired");
   };
 };
 
@@ -108,20 +113,19 @@ const FormerEmployee = function (
   startDate,
   endDate
 ) {
-  this.__proto__ = new Employee(
-    name,
-    lastName,
-    location,
-    phoneNumber,
-    position,
-    baseSalary,
-    salaryCurrency,
-    department
+  Object.setPrototypeOf(
+    this,
+    new Employee(
+      name,
+      lastName,
+      location,
+      phoneNumber,
+      position,
+      baseSalary,
+      salaryCurrency,
+      department
+    )
   );
   this.startDate = startDate;
   this.endDate = endDate;
 };
-
-// Employee.prototype = new Person();
-// CurrentEmployee.prototype = new Employee();
-// FormerEmployee.prototype = new Employee();
