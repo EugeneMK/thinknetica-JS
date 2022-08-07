@@ -13,8 +13,12 @@ const SailingShip = function (name, numberOfMasts, sailArea, color) {
 };
 
 const Shipyard = function () {
+  this.build = function (...args) {
+    return new this.ship(...args);
+  };
+
   this.repair = function (ship) {
-    if (Object.getPrototypeOf(ship) === Object.getPrototypeOf(this.build())) {
+    if (ship instanceof this.ship) {
       return `${ship.name} has been repaired.`;
     }
     return `${ship.name} can't be repaired at this shipyard.`;
@@ -26,7 +30,7 @@ const Shipyard = function () {
   };
 
   this.changeShip = function (ship, ...args) {
-    if (Object.getPrototypeOf(ship) === Object.getPrototypeOf(this.build())) {
+    if (ship instanceof this.ship) {
       return this.build(...args);
     }
     return `${ship.name} can't be changed at this shipyard.`;
@@ -34,15 +38,11 @@ const Shipyard = function () {
 };
 
 const MotorShipyard = function () {
-  this.build = function (...args) {
-    return new MotorShip(...args);
-  };
+  this.ship = MotorShip;
 };
 
 const SailingShipyard = function () {
-  this.build = function (...args) {
-    return new SailingShip(...args);
-  };
+  this.ship = SailingShip;
 };
 
 MotorShipyard.prototype = new Shipyard();
